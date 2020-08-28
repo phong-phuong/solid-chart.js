@@ -3,18 +3,16 @@ import commonjs from "@rollup/plugin-commonjs";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import strip from "@rollup/plugin-strip";
 import del from "rollup-plugin-delete";
-const extensions = ["ts", "tsx", "js", "jsx"].map((x) => "." + x);
+const extensions = [".ts", ".tsx", ".js"];
 
 /** @type {import('rollup').RollupOptions} */
 const config = {
   input: "src/index.ts",
+  external: ["solid-js", "chart.js"],
   treeshake: true,
-  preserveEntrySignatures: false,
   output: {
-    sourcemap: false,
     dir: "dist",
     format: "es",
-    minifyInternalExports: true,
   },
   plugins: [
     nodeResolve({
