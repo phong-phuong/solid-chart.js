@@ -1,5 +1,5 @@
 {
-  "name": "solid-chartjs",
+  "name": "solid-chart.js",
   "version": "1.0.0",
   "description": "Solid components for ChartJS library",
   "main": "lib/index.js",
