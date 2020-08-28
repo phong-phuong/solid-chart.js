@@ -27,6 +27,8 @@
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-strip": "^2.0.0",
     "@types/chart.js": "^2.9.24",
+    "@types/lodash.clonedeep": "^4.5.6",
+    "@types/lodash.merge": "^4.6.6",
     "babel-preset-solid": "^0.19.0",
     "babel-preset-typescript": "^7.0.0-alpha.19",
     "rollup": "^2.26.6",
@@ -35,6 +37,8 @@
   },
   "dependencies": {
     "chart.js": "^2.9.3",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.merge": "^4.6.2",
     "solid-js": "^0.19.0"
   }
 }
