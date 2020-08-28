@@ -1,10 +1,10 @@
 {
   "name": "solid-chart.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Solid components for ChartJS library",
-  "main": "lib/index.js",
-  "module": "dist/index.js",
-  "types": "types/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./types/index.d.ts",
   "files": [
     "dist",
     "types"
@@ -17,7 +17,7 @@
     "solid-js",
     "chart.js"
   ],
-  "author": "mrfoxpro tuningiposadka@gmail.com",
+  "author": "foxpro tuningiposadka@gmail.com",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.11.4",
