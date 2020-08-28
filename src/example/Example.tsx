@@ -1,5 +1,5 @@
 import { afterEffects, createState } from "solid-js";
-import SolidChart, { SolidChartProps } from "../index";
+import SolidChart, { SolidChartProps } from "../";
 const edges = 6;
 const labels = ["Solid", "Is", "Most", "Performant", "JavaScript", "Framework"];
 const datasets = new Array<number[]>(edges).fill([]).map((_, i) => {
@@ -27,7 +27,7 @@ export default function Stats() {
     options: {
       title: {
         display: true,
-        text: "SOLID GRAPH",
+        text: "SOLID CHART",
       },
       scale: {
         ticks: {
@@ -40,18 +40,17 @@ export default function Stats() {
   afterEffects(() => {
     setInterval(() => {
       labels.push(labels.shift());
-
       setChart("data", "labels", [...labels]);
-
       datasets.push(datasets.shift());
-    }, 1500);
+      setChart("data", "datasets", [...datasets]);
+    }, 1400);
   });
   return (
     <SolidChart
       {...chart}
       canvasOptions={{
         width: 1000,
-        height: 1000,
+        height: 950,
       }}
     />
   );

@@ -7,10 +7,10 @@ Chart.JS powered by solid-js framework
 ### Example
 
 ```tsx
-import { afterEffects, createState } from "solid-js";
-import SolidChart, { SolidChartProps } from "../index";
+import { afterEffects, createState } from 'solid-js';
+import SolidChart, { SolidChartProps } from 'solid-chart.js';
 const edges = 6;
-const labels = ["Solid", "Is", "Most", "Performant", "JavaScript", "Framework"];
+const labels = ['Solid', 'Is', 'Most', 'Performant', 'JavaScript', 'Framework'];
 const datasets = new Array<number[]>(edges).fill([]).map((_, i) => {
   const arr = [0, 0, 0, 0, 0, 0];
   if (i === edges - 1) {
@@ -21,14 +21,14 @@ const datasets = new Array<number[]>(edges).fill([]).map((_, i) => {
     arr[i + 1] = 60;
   }
   return {
-    backgroundColor: i % 2 === 0 ? "#3164A3" : "white",
+    backgroundColor: i % 2 === 0 ? '#3164A3' : 'white',
     data: arr,
     label: labels[i],
   };
 });
 export default function Stats() {
   const settings: SolidChartProps = {
-    type: "radar",
+    type: 'radar',
     data: {
       labels,
       datasets,
@@ -36,7 +36,7 @@ export default function Stats() {
     options: {
       title: {
         display: true,
-        text: "SOLID GRAPH",
+        text: 'SOLID CHART',
       },
       scale: {
         ticks: {
@@ -49,18 +49,17 @@ export default function Stats() {
   afterEffects(() => {
     setInterval(() => {
       labels.push(labels.shift());
-
-      setChart("data", "labels", [...labels]);
-
+      setChart('data', 'labels', [...labels]);
       datasets.push(datasets.shift());
-    }, 1500);
+      setChart('data', 'datasets', [...datasets]);
+    }, 1400);
   });
   return (
     <SolidChart
       {...chart}
       canvasOptions={{
         width: 1000,
-        height: 1000,
+        height: 950,
       }}
     />
   );
