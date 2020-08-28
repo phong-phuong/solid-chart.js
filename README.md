@@ -66,4 +66,4 @@ export default function Stats() {
 }
 ```
 
-![alt](https://i.imgur.com/7XX9dBf.gif)
+![alt](https://i.imgur.com/WTDB6V7.gif)
