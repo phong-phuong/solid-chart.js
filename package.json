@@ -1,6 +1,6 @@
 {
   "name": "solid-chart.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Solid components for ChartJS library",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
