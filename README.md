@@ -2,7 +2,7 @@ Chart.JS powered by solid-js framework
 
 ### Installation
 
-`npm i chart.js solid-js solid-chartjs`
+`npm i chart.js solid-js solid-chart.js`
 
 ### Example
 
