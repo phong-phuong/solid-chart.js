@@ -1,30 +1,44 @@
-import { Chart } from "chart.js";
-import { ComponentProps, createEffect, createSignal } from "solid-js";
+import { Chart, registerables } from 'chart.js';
 import merge from "lodash.merge";
+import { ComponentProps, createEffect, createSignal } from "solid-js";
 export type SolidChartProps = {
-  canvasOptions?: ComponentProps<"canvas">;
+    canvasOptions?: ComponentProps<"canvas">;
 } & Chart.ChartConfiguration;
 
+Chart.register(...registerables);
+
 const deepClone = (config: SolidChartProps): SolidChartProps =>
-  JSON.parse(JSON.stringify(config));
+    JSON.parse(JSON.stringify(config));
 
 export function SolidChart(props: SolidChartProps) {
-  const [canvas, setCanvas] = createSignal<HTMLCanvasElement | null>(null);
-  const [chart, setChart] = createSignal<Chart | null>(null);
-  createEffect(() => {
-    const el = canvas();
-    if (!el) return;
-    const _chart = chart();
-    if (!_chart) {
-      setChart(new Chart(el, deepClone(props)));
-      return;
+    const [canvas, setCanvas] = createSignal<HTMLCanvasElement | null>(null);
+    const [chart, setChart] = createSignal<Chart | null>(null);
+    createEffect(() => {
+        const el = canvas();
+        if (!el) return;
+        const _chart = chart();
+        if (!_chart) {
+            setChart(new Chart(el, deepClone(props)));
+            return;
+        }
+
+        /* I removed the following line and replaced it because
+         * it was causing a bug where the chart was not updating correctly due to merge
+         * there are instances where we want to remove properties or data from the chart,
+         * rather than merge them 
+         * However, it may be better to just create a new chart instance, but it defeats the
+         * purpose of reactivity.
+         */
+
+        // merge(_chart.config, deepClone(props));
+        if(props.data) {
+          _chart.data = props.data;
+        }
+        console.log("updating chart");
+        _chart.update();
+    });
+    function createChart(canvas: HTMLCanvasElement) {
+        setTimeout(() => setCanvas(canvas));
     }
-    merge(_chart.config, deepClone(props));
-    console.log("updating chart");
-    _chart.update();
-  });
-  function createChart(canvas: HTMLCanvasElement) {
-    setTimeout(() => setCanvas(canvas));
-  }
-  return <canvas {...props.canvasOptions} ref={createChart} />;
+    return <canvas {...props.canvasOptions} ref={createChart} />;
 }

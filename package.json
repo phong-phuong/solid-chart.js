@@ -1,6 +1,6 @@
 {
   "name": "solid-chart.js",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Solid components for ChartJS library",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -10,6 +10,7 @@
     "types"
   ],
   "scripts": {
+    "start": "vite",
     "build": "rollup -c",
     "types": "tsc"
   },
@@ -30,19 +31,22 @@
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-strip": "^2.0.0",
-    "@types/chart.js": "^2.9.24",
+    "@types/chart.js": "^2.9.35",
     "@types/lodash.clonedeep": "^4.5.6",
     "@types/lodash.merge": "^4.6.6",
     "babel-preset-solid": "^0.19.0",
     "babel-preset-typescript": "^7.0.0-alpha.19",
     "rollup": "^2.26.10",
     "rollup-plugin-delete": "^2.0.0",
-    "typescript": "^4.1.0-dev.20200828"
+    "typescript": "^4.1.0-dev.20200828",
+    "@types/node": "^17.0.17",
+        "vite": "^2.8.1",
+        "vite-plugin-solid": "^2.2.5"
   },
   "dependencies": {
-    "chart.js": "^2.9.3",
+    "chart.js": "^3.7.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.merge": "^4.6.2",
-    "solid-js": "^0.19.2"
+    "solid-js": "^1.0.0"
   }
 }

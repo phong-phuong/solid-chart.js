@@ -1,4 +1,5 @@
-import { afterEffects, createState } from "solid-js";
+
+import { createEffect, createSignal } from "solid-js";
 import SolidChart, { SolidChartProps } from "../";
 const edges = 6;
 const labels = ["Solid", "Is", "Most", "Performant", "JavaScript", "Framework"];
@@ -36,8 +37,8 @@ export default function Stats() {
       },
     },
   };
-  const [chart, setChart] = createState(settings);
-  afterEffects(() => {
+  const [chart, setChart] = createSignal(settings);
+  createEffect(() => {
     setInterval(() => {
       labels.push(labels.shift());
       setChart("data", "labels", [...labels]);
