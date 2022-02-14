@@ -30,10 +30,12 @@ export function SolidChart(props: SolidChartProps) {
          * purpose of reactivity.
          */
 
-        // merge(_chart.config, deepClone(props));
-        if(props.data) {
-          _chart.data = props.data;
-        }
+//        merge(_chart.config, deepClone(props));)
+        if(props.type) _chart.config.type = props.type;
+        if(props.options) _chart.config.options = props.options;
+        if(props.plugins) _chart.config.plugins = props.plugins;
+        if(props.data) _chart.data = props.data;
+        
         console.log("updating chart");
         _chart.update();
     });

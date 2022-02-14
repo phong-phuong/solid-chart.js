@@ -63,7 +63,7 @@ export default () => {
                     },
                     title: {
                         display: true,
-                        text: 'SolidChart.js Bar Chart'
+                        text: `Dataset with ${data.labels.length} items`,
                     }
                 }
             },
