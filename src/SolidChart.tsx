@@ -1,5 +1,4 @@
 import { Chart, registerables } from 'chart.js';
-//import merge from "lodash.merge";
 import { ComponentProps, createEffect, createSignal } from "solid-js";
 export type SolidChartProps = {
     canvasOptions?: ComponentProps<"canvas">;
