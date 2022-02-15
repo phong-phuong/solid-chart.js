@@ -1,5 +1,5 @@
 import { Chart, registerables } from 'chart.js';
-import merge from "lodash.merge";
+//import merge from "lodash.merge";
 import { ComponentProps, createEffect, createSignal } from "solid-js";
 export type SolidChartProps = {
     canvasOptions?: ComponentProps<"canvas">;
@@ -9,6 +9,15 @@ Chart.register(...registerables);
 
 const deepClone = (config: SolidChartProps): SolidChartProps =>
     JSON.parse(JSON.stringify(config));
+
+const replaceChartProps  = (props: {src:SolidChartProps, dest:Chart})=> {
+    const { src, dest } = props;
+    for(const key in src) {
+        if(key in dest) {
+            dest[key] = src[key];
+        }
+    }
+}
 
 export function SolidChart(props: SolidChartProps) {
     const [canvas, setCanvas] = createSignal<HTMLCanvasElement | null>(null);
@@ -30,11 +39,8 @@ export function SolidChart(props: SolidChartProps) {
          * purpose of reactivity.
          */
 
-//        merge(_chart.config, deepClone(props));)
-        if(props.type) _chart.config.type = props.type;
-        if(props.options) _chart.config.options = props.options;
-        if(props.plugins) _chart.config.plugins = props.plugins;
-        if(props.data) _chart.data = props.data;
+        //merge(_chart.config, deepClone(props));
+        replaceChartProps({src: props, dest: _chart.config});
         
         console.log("updating chart");
         _chart.update();
