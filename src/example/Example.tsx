@@ -1,5 +1,4 @@
-
-import { createEffect, createSignal } from "solid-js";
+import { createSignal } from "solid-js";
 import SolidChart, { SolidChartProps } from "../";
 const edges = 6;
 const labels = ["Solid", "Is", "Most", "Performant", "JavaScript", "Framework"];
@@ -37,22 +36,24 @@ export default function Stats() {
       },
     },
   };
+
   const [chart, setChart] = createSignal(settings);
-  createEffect(() => {
-    setInterval(() => {
-      labels.push(labels.shift());
-      setChart("data", "labels", [...labels]);
-      datasets.push(datasets.shift());
-      setChart("data", "datasets", [...datasets]);
-    }, 1400);
-  });
+
+  setInterval(() => {
+    labels.push(labels.shift());
+    datasets.push(datasets.shift());
+    setChart({ data: { labels, datasets } });
+  }, 1400);
+
   return (
-    <SolidChart
-      {...chart}
-      canvasOptions={{
-        width: 1000,
-        height: 950,
-      }}
-    />
+    <>
+      <SolidChart
+        {...chart}
+        canvasOptions={{
+          width: 1000,
+          height: 950,
+        }}
+      />
+    </>
   );
 }

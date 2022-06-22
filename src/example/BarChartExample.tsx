@@ -67,6 +67,7 @@ export default () => {
                     }
                 }
             },
+            replace: true
         };
     };
 

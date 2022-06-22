@@ -1,18 +1,19 @@
 import { Chart, registerables } from 'chart.js';
 import { ComponentProps, createEffect, createSignal } from "solid-js";
+import merge from "lodash.merge";
+import deepClone from "lodash.clonedeep";
+
 export type SolidChartProps = {
     canvasOptions?: ComponentProps<"canvas">;
+    replace?: boolean // set this to true if merging properties is not suitable (i.e. when you need to remove items or properties)
 } & Chart.ChartConfiguration;
 
 Chart.register(...registerables);
 
-const deepClone = (config: SolidChartProps): SolidChartProps =>
-    JSON.parse(JSON.stringify(config));
-
-const replaceChartProps  = (props: {src:SolidChartProps, dest:Chart})=> {
+const replaceChartProps = (props: { src: SolidChartProps, dest: Chart }) => {
     const { src, dest } = props;
-    for(const key in src) {
-        if(key in dest) {
+    for (const key in src) {
+        if (key in dest) {
             dest[key] = src[key];
         }
     }
@@ -30,17 +31,11 @@ export function SolidChart(props: SolidChartProps) {
             return;
         }
 
-        /* I removed the following line and replaced it because
-         * it was causing a bug where the chart was not updating correctly due to merge
-         * there are instances where we want to remove properties or data from the chart,
-         * rather than merge them 
-         * However, it may be better to just create a new chart instance, but it defeats the
-         * purpose of reactivity.
-         */
-
-        //merge(_chart.config, deepClone(props));
-        replaceChartProps({src: props, dest: _chart.config});
-        
+        if (props.replace) {
+            replaceChartProps({ src: props, dest: _chart.config });
+        } else {
+            merge(_chart.config, deepClone(props));
+        }
         console.log("updating chart");
         _chart.update();
     });
