@@ -1,8 +1,8 @@
-
+import { ChartConfiguration, ChartData } from 'chart.js';
 import { createEffect, createSignal } from "solid-js";
 import SolidChart from "../";
 
-const dataset1 = {
+const dataset1 : ChartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
         {
@@ -26,7 +26,7 @@ const dataset1 = {
     ]
 };
 
-const dataset2 = {
+const dataset2 : ChartData = {
     labels: ["January", "February", "March"],
     datasets: [
         {
@@ -51,7 +51,7 @@ const dataset2 = {
 };
 
 export default () => {
-    const createConfig = (data) => {
+    const createConfig = (data: ChartData) : ChartConfiguration => {
         return {
             type: 'bar',
             data: data,
@@ -74,7 +74,7 @@ export default () => {
     const [dataset, setDataset] = createSignal(dataset1);
     const [chart, setChart] = createSignal(createConfig(dataset()));
 
-    const updateChart = (data) => {
+    const updateChart = (data: : ChartData) => {
         setChart(createConfig(data));
     } 
 
