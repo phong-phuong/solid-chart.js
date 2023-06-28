@@ -10,14 +10,14 @@ export type SolidChartProps = {
 
 Chart.register(...registerables);
 
-const replaceChartProps = (props: { src: SolidChartProps, dest: Chart }) => {
+const replaceChartProps = (props: { src: SolidChartProps, dest: ChartConfiguration }) => {
     const { src, dest } = props;
-    for (const key in src) {
+    Object.keys(src).forEach((key) => {
         if (key in dest) {
-            dest[key] = src[key];
+            (dest as any)[key] = src[key];
         }
-    }
-}
+    });
+};
 
 export function SolidChart(props: SolidChartProps) {
     const [canvas, setCanvas] = createSignal<HTMLCanvasElement | null>(null);
